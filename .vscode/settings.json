@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\skola_ls\\Java\\xchart-3.8.0\\xchart-3.8.0.jar",
+        "d:\\skola_ls\\Java\\json-20210307.jar",
+        "d:\\skola_ls\\Java\\xchart-3.8.0\\xchart-demo-3.8.0.jar"
+    ]
+}
