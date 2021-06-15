@@ -2,12 +2,12 @@ package src.APP;
 
 import java.util.Date;
 
-public class dataDny {
+public class dataUmrti {
     private Date datum;
     private Double umrti;
     private Double kumUmrti;
 
-    public dataDny(Date datum, Double umrti, Double kumUmrti) {
+    public dataUmrti(Date datum, Double umrti, Double kumUmrti) {
         this.datum = datum;
         this.umrti = umrti;
         this.kumUmrti = kumUmrti;

@@ -10,10 +10,10 @@ public class API {
     static String line;
     static StringBuffer responseContent = new StringBuffer();
 
-    public static StringBuffer fetchApiHosp() {
+    public static StringBuffer fetchApi() {
         try {
 
-            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/hospitalizace.json");
+            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/nakazeni-vyleceni-umrti-testy.json");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -39,11 +39,11 @@ public class API {
         }
         return responseContent;
     }
-
-    public static StringBuffer fetchApiOckovani() {
+    /*
+    public static StringBuffer fetchApiTesty() {
         try {
 
-            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/hospitalizace.json");
+            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -68,5 +68,5 @@ public class API {
             e.printStackTrace();
         }
         return responseContent;
-    }
+    }*/
 }
