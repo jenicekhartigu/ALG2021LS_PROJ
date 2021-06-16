@@ -39,11 +39,11 @@ public class API {
         }
         return responseContent;
     }
-    /*
-    public static StringBuffer fetchApiTesty() {
+    
+    public static StringBuffer fetchApiOckovani() {
         try {
 
-            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json");
+            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -68,5 +68,5 @@ public class API {
             e.printStackTrace();
         }
         return responseContent;
-    }*/
+    }
 }

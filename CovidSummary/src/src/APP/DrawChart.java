@@ -18,15 +18,17 @@ import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
 public class DrawChart {
+    static long millis=System.currentTimeMillis();  
+    static java.sql.Date date=new java.sql.Date(millis);
 
     public static void vykresliUmrti(int dny) throws IOException, ParseException {
-        List<dataUmrti> data = App.parseUmrti(API.fetchApi().toString());
+        List<dataVUT> data = App.parseVUT(API.fetchApi().toString());
         List<Date> xData = new ArrayList<Date>();
         List<Double> yData = new ArrayList<Double>();
         double mrtvoly = 0;
         String popisek = "";
         if (dny == 0) {
-            for (dataUmrti i : data) {
+            for (dataVUT i : data) {
                 xData.add(i.getDatum());
                 yData.add(i.getUmrti());
                 mrtvoly += i.getUmrti();
@@ -55,17 +57,22 @@ public class DrawChart {
         chart.addSeries("Počet mrtvých za " + popisek, xData, yData);
 
         // Show it
-        new SwingWrapper<>(chart).displayChart();
+        //new SwingWrapper<>(chart).displayChart();
+        if(dny == 0) {
+            BitmapEncoder.saveBitmap(chart, "./pumrti_k_"+date+"", BitmapFormat.PNG);
+        } else {
+            BitmapEncoder.saveBitmap(chart, "./umrti_"+dny+"dni_nazpet_k_"+date+"", BitmapFormat.PNG);
+        }
 
     }
     public static void vykresliTesty(int dny) throws IOException, ParseException {
-        List<dataTesty> data = App.parseTesty(API.fetchApi().toString());
+        List<dataVUT> data = App.parseVUT(API.fetchApi().toString());
         List<Date> xData = new ArrayList<Date>();
         List<Double> pcrData = new ArrayList<Double>();
         List<Double> agData = new ArrayList<Double>();
 
         if (dny == 0) {
-            for (dataTesty i : data) {
+            for (dataVUT i : data) {
                 xData.add(i.getDatum());
                 pcrData.add(i.getPcr_testy());
                 agData.add(i.getAg_testy());
@@ -90,20 +97,67 @@ public class DrawChart {
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Line);
         chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
         chart.getStyler().setDatePattern("y-M-d");
-        chart.getStyler().setDecimalPattern("#0.0");
+        chart.getStyler().setDecimalPattern("#0");
 
         chart.addSeries("Počet antigeních testu", xData, agData);
         chart.addSeries("Počet PCR testu", xData, pcrData);
 
         // Show it
-        new SwingWrapper<>(chart).displayChart();
+        //new SwingWrapper<>(chart).displayChart();
 
-        long millis=System.currentTimeMillis();  
-        java.sql.Date date=new java.sql.Date(millis);  
-        System.out.println(date);
 
-        BitmapEncoder.saveBitmap(chart, "./Testy"+dny+"nazpet"+date+"", BitmapFormat.PNG);
+        if(dny == 0) {
+            BitmapEncoder.saveBitmap(chart, "./provedene_testy_k_"+date+"", BitmapFormat.PNG);
+        } else {
+            BitmapEncoder.saveBitmap(chart, "./testy_"+dny+"dni_nazpet_k_"+date+"", BitmapFormat.PNG);
+        }
+    }
+    public static void vykresliNakazene(int dny) throws IOException, ParseException {
+        /*List<dataVUT> data = App.parseVUT(API.fetchApi().toString());
+        List<Date> xData = new ArrayList<Date>();
+        List<Double> pcrData = new ArrayList<Double>();
+        List<Double> agData = new ArrayList<Double>();
 
+        if (dny == 0) {
+            for (dataVUT i : data) {
+                xData.add(i.getDatum());
+                pcrData.add(i.getPcr_testy());
+                agData.add(i.getAg_testy());
+                
+            }
+        } else {
+        
+            for (int i = 1; i < dny+1; i++) {
+                //System.out.println(i + ": " + data.get(data.size() - i).toString());
+                xData.add(data.get(data.size() - i).getDatum());
+                agData.add(data.get(data.size() - i).getAg_testy());
+                pcrData.add(data.get(data.size() - i).getPcr_testy());
+
+
+            }
+            Collections.reverse(xData);
+            Collections.reverse(agData);
+            Collections.reverse(pcrData);
+            
+        }
+        final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Testy").build();
+        chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Line);
+        chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
+        chart.getStyler().setDatePattern("y-M-d");
+        chart.getStyler().setDecimalPattern("#0");
+
+        chart.addSeries("Počet antigeních testu", xData, agData);
+        chart.addSeries("Počet PCR testu", xData, pcrData);
+
+        // Show it
+        //new SwingWrapper<>(chart).displayChart();
+
+
+        if(dny == 0) {
+            BitmapEncoder.saveBitmap(chart, "./provedene_testy_k_"+date+"", BitmapFormat.PNG);
+        } else {
+            BitmapEncoder.saveBitmap(chart, "./testy_"+dny+"dni_nazpet_k_"+date+"", BitmapFormat.PNG);
+        }*/
     }
 
     

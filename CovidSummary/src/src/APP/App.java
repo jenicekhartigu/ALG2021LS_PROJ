@@ -17,6 +17,8 @@ import org.json.JSONObject;
 
 public class App {
 
+    static DateFormat format = new SimpleDateFormat("y-M-d");
+
     public static void main(String[] args) throws IOException, ParseException {
         /*
         List<dataDny> data = parseHosp(API.fetchApiHosp().toString());
@@ -28,13 +30,13 @@ public class App {
         for (int i = 11; i < 1; i--) {
             System.out.println(i + ": " + data.get(data.size() - i).getDatum());
         }*/
-        parseUmrti(API.fetchApi().toString());
-        parseTesty(API.fetchApi().toString());
+        //parseUmrti(API.fetchApi().toString());
+        parseVUT(API.fetchApi().toString());
 
         
 
     }
-    static DateFormat format = new SimpleDateFormat("y-M-d");
+    /*
     public static List<dataUmrti> parseUmrti(String responseBody) throws IOException, ParseException {
         JSONArray celaDataJSON = new JSONObject(responseBody).getJSONArray("data");
         List<dataUmrti> dataUmrti = new ArrayList<dataUmrti>();
@@ -50,17 +52,44 @@ public class App {
         
         return dataUmrti;
     }
-    public static List<dataTesty> parseTesty(String responseBody) throws IOException, ParseException {
+    */
+    public static List<dataVUT> parseVUT(String responseBody) throws IOException, ParseException {
         JSONArray celaDataJSON = new JSONObject(responseBody).getJSONArray("data");
-        List<dataTesty> dataTesty = new ArrayList<dataTesty>();
+        List<dataVUT> dataTesty = new ArrayList<dataVUT>();
         
         for (int i = 0; i < celaDataJSON.length(); i++) {
             JSONObject dataDny = celaDataJSON.getJSONObject(i);
 
-            dataTesty.add(new dataTesty(format.parse(dataDny.getString("datum")), dataDny.getDouble("prirustkovy_pocet_provedenych_ag_testu"), dataDny.getDouble("prirustkovy_pocet_provedenych_testu"), dataDny.getDouble("kumulativni_pocet_ag_testu"), dataDny.getDouble("kumulativni_pocet_testu")));
+            dataTesty.add(new dataVUT(format.parse(dataDny.getString("datum")),
+                            dataDny.getDouble("prirustkovy_pocet_provedenych_ag_testu"), 
+                            dataDny.getDouble("prirustkovy_pocet_provedenych_testu"), 
+                            dataDny.getDouble("kumulativni_pocet_ag_testu"), 
+                            dataDny.getDouble("kumulativni_pocet_testu"), 
+                            dataDny.getDouble("prirustkovy_pocet_umrti"),
+                            dataDny.getDouble("kumulativni_pocet_umrti"),
+                            dataDny.getDouble("prirustkovy_pocet_nakazenych"),
+                            dataDny.getDouble("prirustkovy_pocet_vylecenych")
+                            
+                            ));
         }
 
         return dataTesty;
     }
+    /*
+    public static List<dataVUT> parseOckovani(String responseBody) throws IOException, ParseException {
+        JSONArray celaDataJSON = new JSONObject(responseBody).getJSONArray("data");
+        List<dataVUT> dataTesty = new ArrayList<dataVUT>();
+        
+        for (int i = 0; i < celaDataJSON.length(); i++) {
+            JSONObject dataDny = celaDataJSON.getJSONObject(i);
+
+            dataTesty.add(n
+            ew dataVUT(format.parse(dataDny.getString("datum")), dataDny.getDouble("prirustkovy_pocet_provedenych_ag_testu"), dataDny.getDouble("prirustkovy_pocet_provedenych_testu"), dataDny.getDouble("kumulativni_pocet_ag_testu"), dataDny.getDouble("kumulativni_pocet_testu")));
+        }
+
+        return dataTesty;
+    }
+    */
+
 
 }
