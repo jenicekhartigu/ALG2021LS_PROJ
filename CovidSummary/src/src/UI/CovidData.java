@@ -65,6 +65,7 @@ public class CovidData {
                     MenuStr.clearScreen();
                         break;
                     default:
+                    MenuStr.clearScreen();
                     System.out.println("Zadali jste špatnou hodnotu");
                         break;
                     }
@@ -91,17 +92,48 @@ public class CovidData {
                     MenuStr.clearScreen();
                         break;
                     default:
+                    MenuStr.clearScreen();
                     System.out.println("Zadali jste špatnou hodnotu");
                         break;
                     }
                 }
                     break;
+                    case 4:
+                    int zz = 0;
+                    while (zz == 0) {
+                    System.out.println("Zobrazení dat ockovani");
+                    System.out.println(MenuStr.getMenuOckovani());
+    
+                    int vyber2 = sc.nextInt();
+                    switch (vyber2) {
+                        case 1:
+                        DrawChart.vykresliOckovani(0);
+                        zz = 1;
+                        MenuStr.clearScreen();
+                            break;
+                        case 2:
+                        System.out.print("Zadej počet dnu: ");
+                        int pocet = sc.nextInt();
+                        DrawChart.vykresliOckovani(pocet);
+                        zz = 1;
+                        MenuStr.clearScreen();
+                            break;
+                        
+                            
 
+                        default:
+                        MenuStr.clearScreen();
+                        System.out.println("Zadali jste špatnou hodnotu");
+                            break;
+                        }
+                    }
+                        break;
                 case 5:
                     System.out.println("Ukončuji program");
                     x = 1;
                     break;
                 default:
+                MenuStr.clearScreen();
                 System.out.println("Zadali jste špatnou hodnotu");
                     break;
             }
