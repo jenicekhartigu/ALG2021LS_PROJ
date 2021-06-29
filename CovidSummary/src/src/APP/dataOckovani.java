@@ -4,79 +4,80 @@ import java.util.Date;
 
 public class dataOckovani {
     private Date datum; 
-    private Double astra1;
-    private Double astra2;
-    private Double pfizer1;
-    private Double pfizer2;
-    private Double moderna1;
-    private Double moderna2;
-    private Double jansen;
+    private Double pocetAstra1D;
+    private Double pocetAstra2D;
+    private Double pocetPfize1D;
+    private Double pocetPfize2D;
+    private Double pocetModer1D;
+    private Double pocetModer2D;
+    private Double pocetJanse1D;
 
-    public dataOckovani(Date datum, Double astra1, Double astra2, Double pfizer1, Double pfizer2, Double moderna1,
-            Double moderna2, Double jansen) {
+    public dataOckovani(Date datum, 
+                        Double pocetAstra1D, 
+                        Double pocetAstra2D, 
+                        Double pocetPfize1D, 
+                        Double pocetPfize2D, 
+                        Double pocetModer1D,
+                        Double pocetModer2D, 
+                        Double pocetJanse1D) {
         this.datum = datum;
-        this.astra1 = astra1;
-        this.astra2 = astra2;
-        this.pfizer1 = pfizer1;
-        this.pfizer2 = pfizer2;
-        this.moderna1 = moderna1;
-        this.moderna2 = moderna2;
-        this.jansen = jansen;
+        this.pocetAstra1D = pocetAstra1D;
+        this.pocetAstra2D = pocetAstra2D;
+        this.pocetPfize1D = pocetPfize1D;
+        this.pocetPfize2D = pocetPfize2D;
+        this.pocetModer1D = pocetModer1D;
+        this.pocetModer2D = pocetModer2D;
+        this.pocetJanse1D = pocetJanse1D;
     }
 
     public Date getDatum() {
         return datum;
     }
 
-    public Double getAstra1() {
-        return astra1;
+    public Double getpocetAstra1D() {
+        return pocetAstra1D;
     }
-    public Double getAstra2() {
-        return astra2;
-    }
-
-    public Double getPfizer1() {
-        return pfizer1;
-    }
-    public Double getPfizer2() {
-        return pfizer2;
+    public Double getpocetAstra2D() {
+        return pocetAstra2D;
     }
 
-    public Double getModerna1() {
-        return moderna1;
+    public Double getpocetPfize1D() {
+        return pocetPfize1D;
     }
-    public Double getModerna2() {
-        return moderna2;
+    public Double getpocetPfize2D() {
+        return pocetPfize2D;
     }
 
-    public Double getJansen() {
-        return jansen;
+    public Double getpocetModer1D() {
+        return pocetModer1D;
     }
-    public Double getOckovaniCelkem1() {
-        double ockovaniCelkem1 = astra1 + pfizer1 + moderna1;
+    public Double getpocetModer2D() {
+        return pocetModer2D;
+    }
+
+    public Double getpocetJanse1D() {
+        return pocetJanse1D;
+    }
+
+    public Double getOckovani1D() {
+        double ockovaniCelkem1 = pocetAstra1D + pocetPfize1D + pocetModer1D;
         return ockovaniCelkem1;
     }
-    public Double getOckovaniCelkem2() {
-        double ockovaniCelkem2 = astra2 + pfizer2 + moderna2 + jansen;
+    public Double getOckovani2D() {
+        double ockovaniCelkem2 = pocetAstra2D + pocetPfize2D + pocetModer2D + pocetJanse1D;
         return ockovaniCelkem2;
     }
 
     public String toStringCelkem() {
-        double astraCelkem = astra1 + astra2;
-        double pfizerCelkem = pfizer1 + pfizer2;
-        double modernaCelkem = moderna1 + moderna2;
+        double astraCelkem = pocetAstra1D + pocetAstra2D;
+        double pfizerCelkem = pocetPfize1D + pocetPfize2D;
+        double modernaCelkem = pocetModer1D + pocetModer2D;
 
-        return "Ockovani celkem\n Astra Zeneca: " + astraCelkem + "\n Pfizer: " + pfizerCelkem + "\n Moderna: " + modernaCelkem + "\n Jansen: " + jansen +"\n";
+        return "Ockovani celkem\n Astra Zeneca: " + astraCelkem + "\n Pfizer: " + pfizerCelkem + "\n Moderna: " + modernaCelkem + "\n pocetJanse1D: " + pocetJanse1D +"\n";
     }
     @Override
     public String toString() {
-        /*double astraCelkem = astra1 + astra2;
-        double pfizerCelkem = pfizer1 + pfizer2;
-        double modernaCelkem = moderna1 + moderna2;
-        
-        return "Ockovani celkem\n Astra Zeneca: " + astraCelkem + "\n Pfizer: " + pfizerCelkem + "\n Moderna: " + modernaCelkem + "\n Jansen: " + jansen +"\n";
-        */
-        return "\ndataOckovani " + datum + "\njansen=" + jansen + "\nastra1=" + astra1 + "\nastra2=" + astra2 + "\nmoderna1=" + moderna1 + "\nmoderna2=" + moderna2 + "\npfizer1=" + pfizer1 + "\npfizer2=" + pfizer2
+        return "\ndataOckovani " + datum + "\npocetJanse1D=" + pocetJanse1D + "\npocetAstra1D=" + pocetAstra1D + "\npocetAstra2D=" + pocetAstra2D + "\npocetModer1D=" + pocetModer1D + "\npocetModer2D=" + pocetModer2D + "\npocetPfize1D=" + pocetPfize1D + "\npocetPfize2D=" + pocetPfize2D
                 + "\n";
     }
 

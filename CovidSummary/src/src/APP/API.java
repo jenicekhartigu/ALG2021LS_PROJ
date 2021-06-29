@@ -9,11 +9,13 @@ public class API {
     static BufferedReader reader;
     static String line;
     static StringBuffer responseContent = new StringBuffer();
-
+    static String VUT = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/nakazeni-vyleceni-umrti-testy.json";
+    static String Ockovani = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json";
+    
     public static StringBuffer fetchApi() {
         try {
 
-            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/nakazeni-vyleceni-umrti-testy.json");
+            URL url = new URL(VUT);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -43,7 +45,7 @@ public class API {
     public static StringBuffer fetchApiOckovani() {
         try {
 
-            URL url = new URL("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json");
+            URL url = new URL(Ockovani);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

@@ -20,8 +20,8 @@ public class App {
     static DateFormat format = new SimpleDateFormat("y-M-d");
 
     public static void main(String[] args) throws IOException, ParseException {
-        
-        parseOckovani(API.fetchApiOckovani().toString());
+        //parseVUT(API.fetchApi().toString());
+        System.out.println(parseOckovani(API.fetchApiOckovani().toString()));
 
     }
     
@@ -43,8 +43,9 @@ public class App {
                             dataDny.getDouble("prirustkovy_pocet_nakazenych"),
                             dataDny.getDouble("prirustkovy_pocet_vylecenych")
                             ));
+            
         }
-
+        
         return dataTesty;
     }
     
@@ -62,27 +63,26 @@ public class App {
         
         for (int i = 1; i < celaDataJSON.length(); i++) {
             JSONObject aktualniZaznam = celaDataJSON.getJSONObject(i-1);
-            //System.out.println(dataDny.getInt("celkem_davek"));
             JSONObject dalsiZaznam = celaDataJSON.getJSONObject(i);
 
             if (aktualniZaznam.getString("datum").equals(dalsiZaznam.getString("datum"))) {
-                if (aktualniZaznam.getString("vakcina").equals("VAXZEVRIA")) {
+                if (aktualniZaznam.getString("vakcina").matches("((V)([A-Z]{7})(A))")) {
                     astra1 += aktualniZaznam.getDouble("prvnich_davek");
                     astra2 += aktualniZaznam.getDouble("druhych_davek");
                 } 
-                if (aktualniZaznam.getString("vakcina").equals("Comirnaty")) {
+                if (aktualniZaznam.getString("vakcina").matches("[A-Z][a-z]{8}")) {
                     pfizer1 += aktualniZaznam.getDouble("prvnich_davek");
                     pfizer2 += aktualniZaznam.getDouble("druhych_davek");
                 }
-                if (aktualniZaznam.getString("vakcina").equals("COVID-19 Vaccine Moderna")) {
+                if (aktualniZaznam.getString("vakcina").matches("[A-Z]{5}-[0-9]{2} ([A-Z]*[a-z]{6} [M]*[a-z]{6})")) {
                     moderna1 += aktualniZaznam.getDouble("prvnich_davek");
                     moderna2 += aktualniZaznam.getDouble("druhych_davek");
                 }
-                if (aktualniZaznam.getString("vakcina").equals("COVID-19 Vaccine Janssen")) {
+                if (aktualniZaznam.getString("vakcina").matches("[A-Z]{5}-[0-9]{2} ([A-Z]*[a-z]{6} [J]*[a-z]{6})")) {
+                    //String nazev = "COVID-19 Vaccine Janssen";
                     jansen += aktualniZaznam.getDouble("prvnich_davek");
                 }
             } else {
-                //System.out.println(aktualniZaznam.getString("datum") +" "+ counter);
                 dataOcko.add(new dataOckovani(format.parse(aktualniZaznam.getString("datum")),astra1,astra2,pfizer1,pfizer2,moderna1,moderna2,jansen));
                 astra1 = 0;
                 pfizer1 = 0;
@@ -91,13 +91,9 @@ public class App {
                 pfizer2 = 0;
                 moderna2 = 0;
                 jansen = 0;
-                //System.out.println(dataOcko.toString());
             }
 
         }
-
-        //System.out.println((dataOcko).toString());
-        
 
         return dataOcko;
     }

@@ -11,16 +11,10 @@ import java.util.List;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
-import org.knowm.xchart.PieChart;
-import org.knowm.xchart.PieChartBuilder;
-import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
-import org.knowm.xchart.PieSeries.PieSeriesRenderStyle;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
-import org.knowm.xchart.internal.chartpart.Annotation;
-import org.knowm.xchart.style.PieStyler.AnnotationType;
 import org.knowm.xchart.style.Styler.ChartTheme;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
@@ -28,6 +22,11 @@ public class DrawChart {
     static long millis=System.currentTimeMillis();  
     static java.sql.Date date=new java.sql.Date(millis);
 
+    public static void main(String[] args) throws IOException, ParseException {
+        //parseVUT(API.fetchApi().toString());
+        vykresliOckovani(0);
+
+    }
     public static void vykresliUmrti(int dny) throws IOException, ParseException {
         List<dataVUT> data = App.parseVUT(API.fetchApi().toString());
         List<Date> datum = new ArrayList<Date>();
@@ -39,6 +38,7 @@ public class DrawChart {
                 datum.add(i.getDatum());
                 yData.add(i.getUmrti());
                 mrtvoly += i.getUmrti();
+                
                 
             }
             popisek = "celou pandemii: " + mrtvoly;
@@ -57,14 +57,11 @@ public class DrawChart {
             
         }
         final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Umrti").theme(ChartTheme.GGPlot2).build();
-        //chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle);
         chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
         chart.getStyler().setDatePattern("y-M-d");
 
         chart.addSeries("Počet mrtvých za " + popisek, datum, yData);
 
-        // Show it
-        //new SwingWrapper<>(chart).displayChart();
         if(dny == 0) {
             BitmapEncoder.saveBitmap(chart, "./umrti_k_"+date+"", BitmapFormat.PNG);
         } else {
@@ -100,7 +97,7 @@ public class DrawChart {
             Collections.reverse(pcrData);
             
         }
-        final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Testy").build();
+        final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Testy").theme(ChartTheme.XChart).build();
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Line);
         chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
         chart.getStyler().setDatePattern("y-M-d");
@@ -147,7 +144,7 @@ public class DrawChart {
             Collections.reverse(vyleceni);
             
         }
-        final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Nakazeni / vyleceni").build();
+        final XYChart chart = new XYChartBuilder().title("Covid Data").xAxisTitle("Dny").yAxisTitle("Nakazeni / vyleceni").theme(ChartTheme.Matlab).build();
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Line);
         chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
         chart.getStyler().setDatePattern("y-M-d");
@@ -168,6 +165,7 @@ public class DrawChart {
     }
     public static void vykresliOckovani(int dny) throws IOException, ParseException {
         List<dataOckovani> data = App.parseOckovani(API.fetchApiOckovani().toString());
+
         List<Date> datum = new ArrayList<Date>();
         List<Double> prvniDavka = new ArrayList<Double>();
         List<Double> druhaDavka = new ArrayList<Double>();
@@ -178,6 +176,7 @@ public class DrawChart {
         List<Double> moderna1 = new ArrayList<Double>();
         List<Double> moderna2 = new ArrayList<Double>();
         List<Double> jansen = new ArrayList<Double>();
+
         double pfizer1Celkem = 0;
         double pfizer2Celkem = 0;
         double astra1Celkem = 0;
@@ -185,59 +184,47 @@ public class DrawChart {
         double moderna1Celkem = 0;
         double moderna2Celkem = 0;
         double jansenCelkem = 0;
-
         double prvniDavkyCelkem = 0;
         double druheDavkyCelkem = 0;
-        //double celkemNaockovano = 0;
+
         if (dny == 0) {
             for (dataOckovani i : data) {
                 datum.add(i.getDatum());
-                prvniDavka.add(i.getOckovaniCelkem1());
-                druhaDavka.add(i.getOckovaniCelkem2());
-                pfizer1.add(i.getPfizer1());
-                pfizer2.add(i.getPfizer2());
-                astra1.add(i.getAstra1());
-                astra2.add(i.getAstra2());
-                moderna1.add(i.getModerna1());
-                moderna2.add(i.getModerna2());
-                jansen.add(i.getJansen());
-                prvniDavkyCelkem += i.getOckovaniCelkem1();
-                druheDavkyCelkem += i.getOckovaniCelkem2();
-                pfizer1Celkem += i.getPfizer1();
-                pfizer2Celkem += i.getPfizer2();
-                astra1Celkem += i.getAstra1();
-                astra2Celkem += i.getAstra2();
-                moderna1Celkem += i.getModerna1();
-                moderna2Celkem += i.getModerna2();
-                jansenCelkem += i.getJansen();
+                prvniDavka.add(i.getOckovani1D());
+                druhaDavka.add(i.getOckovani2D());
+                pfizer1.add(i.getpocetPfize1D());
+                pfizer2.add(i.getpocetPfize2D());
+                astra1.add(i.getpocetAstra1D());
+                astra2.add(i.getpocetAstra2D());
+                moderna1.add(i.getpocetModer1D());
+                moderna2.add(i.getpocetModer2D());
+                jansen.add(i.getpocetJanse1D());
+
+                prvniDavkyCelkem += i.getOckovani1D();
+                druheDavkyCelkem += i.getOckovani2D();
+                pfizer1Celkem += i.getpocetPfize1D();
+                pfizer2Celkem += i.getpocetPfize2D();
+                astra1Celkem += i.getpocetAstra1D();
+                astra2Celkem += i.getpocetAstra2D();
+                moderna1Celkem += i.getpocetModer1D();
+                moderna2Celkem += i.getpocetModer2D();
+                jansenCelkem += i.getpocetJanse1D();
                 
             }
         } else {
-        
             for (int i = 1; i < dny+1; i++) {
-                //System.out.println(i + ": " + data.get(data.size() - i).toString());
                 datum.add(data.get(data.size() - i).getDatum());
-                prvniDavka.add(data.get(data.size() - i).getOckovaniCelkem1());
-                druhaDavka.add(data.get(data.size() - i).getOckovaniCelkem2());
-                prvniDavkyCelkem += data.get(data.size() - i).getOckovaniCelkem1();
-                druheDavkyCelkem += data.get(data.size() - i).getOckovaniCelkem2();
-
-
+                prvniDavka.add(data.get(data.size() - i).getOckovani1D());
+                druhaDavka.add(data.get(data.size() - i).getOckovani2D());
+                prvniDavkyCelkem += data.get(data.size() - i).getOckovani2D();
+                druheDavkyCelkem += data.get(data.size() - i).getOckovani2D();
             }
             Collections.reverse(datum);
             Collections.reverse(prvniDavka);
             Collections.reverse(druhaDavka);
             
         }
-        /*
-        //celkemNaockovano = prvniDavkyCelkem + druheDavkyCelkem;
-        final PieChart chart = new PieChartBuilder().title("Covid data - Data o očkovani").theme(ChartTheme.GGPlot2).build();
-        chart.getStyler().setLegendPosition(LegendPosition.InsideNW);
-        chart.addSeries("Pfizer: " + pfizerCelkem, pfizerCelkem);
-        chart.addSeries("AstraZeneca: " + astraCelkem, astraCelkem);
-        chart.addSeries("Moderna: " + modernaCelkem, modernaCelkem);
-        chart.addSeries("Janssen: " + jansenCelkem, jansenCelkem);
-        */
+        
         if(dny==0) { 
         final CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("CovidSummary - Data o očkovani").xAxisTitle("Vakcíny").yAxisTitle("Počet dávek").theme(ChartTheme.GGPlot2).build();
  

@@ -59,6 +59,13 @@ public class dataVUT {
         return pocVylecenych;
     }
 
+    @Override
+    public String toString() {
+        return "dataVUT [ag_testy=" + ag_testy + ", datum=" + datum + ", kumUmrti=" + kumUmrti + ", kum_ag_testy="
+                + kum_ag_testy + ", kum_pcr_testy=" + kum_pcr_testy + ", pcr_testy=" + pcr_testy + ", pocNakazenych="
+                + pocNakazenych + ", pocVylecenych=" + pocVylecenych + ", umrti=" + umrti + "]";
+    }
+
     
     
 
