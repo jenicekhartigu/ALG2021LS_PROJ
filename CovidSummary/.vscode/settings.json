@@ -3,6 +3,7 @@
         "lib/**/*.jar",
         "d:\\skola_ls\\Java\\json-20210307.jar",
         "d:\\skola_ls\\Java\\xchart-3.8.0\\xchart-3.8.0.jar",
-        "d:\\skola_ls\\Java\\xchart-3.8.0\\xchart-demo-3.8.0.jar"
+        "d:\\skola_ls\\Java\\xchart-3.8.0\\xchart-demo-3.8.0.jar",
+        "d:\\skola_ls\\Java\\ALG2021LS_PROJ\\aspose-diagram-21.6.0-jdk16.jar"
     ]
 }

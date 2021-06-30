@@ -10,8 +10,14 @@ public class API {
     static String line;
     static StringBuffer responseContent = new StringBuffer();
     static String VUT = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/nakazeni-vyleceni-umrti-testy.json";
-    static String Ockovani = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json";
-    
+
+    // static String Ockovani =
+    // "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json";
+    /**
+     * Stahnutí dat z internetu
+     * 
+     * @return Nafetchovaná data o umrtí, testech, nakažených a vylečených v JSON
+     */
     public static StringBuffer fetchApi() {
         try {
 
@@ -41,34 +47,22 @@ public class API {
         }
         return responseContent;
     }
-    
-    public static StringBuffer fetchApiOckovani() {
-        try {
-
-            URL url = new URL(Ockovani);
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
-            int status = conn.getResponseCode();
-
-            if (status > 299) {
-                reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            } else {
-                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return responseContent;
-    }
+    /*
+     * public static StringBuffer fetchApiOckovani() { try {
+     * 
+     * URL url = new URL(Ockovani);
+     * 
+     * HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+     * conn.setRequestMethod("GET"); conn.connect(); int status =
+     * conn.getResponseCode();
+     * 
+     * if (status > 299) { reader = new BufferedReader(new
+     * InputStreamReader(conn.getErrorStream())); while ((line = reader.readLine())
+     * != null) { responseContent.append(line); } reader.close(); } else { reader =
+     * new BufferedReader(new InputStreamReader(conn.getInputStream())); while
+     * ((line = reader.readLine()) != null) { responseContent.append(line); }
+     * reader.close(); }
+     * 
+     * } catch (Exception e) { e.printStackTrace(); } return responseContent; }
+     */
 }
