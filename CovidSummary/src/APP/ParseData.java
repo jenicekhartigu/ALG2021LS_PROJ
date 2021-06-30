@@ -13,7 +13,6 @@ import org.json.JSONObject;
 public class ParseData {
 
     static DateFormat format = new SimpleDateFormat("y-M-d");
-
     
     /** 
      * Testovací metoda pro vypsání spravně nafetchovanych dat
