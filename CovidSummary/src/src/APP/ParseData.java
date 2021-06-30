@@ -14,11 +14,25 @@ public class ParseData {
 
     static DateFormat format = new SimpleDateFormat("y-M-d");
 
+    
+    /** 
+     * Testovací metoda pro vypsání spravně nafetchovanych dat
+     * @param args
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void main(String[] args) throws IOException, ParseException {
         // parseVUT(API.fetchApi().toString());
         // System.out.println(parseOckovani(API.fetchApiOckovani().toString()));
     }
 
+    
+    /** 
+     * @param responseBody
+     * @return List<dataVUT>
+     * @throws IOException
+     * @throws ParseException
+     */
     public static List<dataVUT> parseVUT(String responseBody) throws IOException, ParseException {
         JSONArray celaDataJSON = new JSONObject(responseBody).getJSONArray("data");
 

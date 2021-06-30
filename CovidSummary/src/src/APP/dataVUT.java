@@ -85,12 +85,23 @@ public class dataVUT implements Comparable<dataVUT> {
         return pocVylecenych;
     }
 
+    
+    /** 
+     * Přetížená metoda toString() pro vypsaní dat dataVUT
+     * @return String
+     */
     @Override
     public String toString() {
         return "dataVUT [ag_testy=" + ag_testy + ", datum=" + datum + ", pcr_testy=" + pcr_testy + ", pocNakazenych="
                 + pocNakazenych + ", pocVylecenych=" + pocVylecenych + ", umrti=" + umrti + "]";
     }
 
+    
+    /** 
+     * Implementovana metoda Comparable pro setřídění podle PCR testu
+     * @param o
+     * @return int
+     */
     @Override
     public int compareTo(dataVUT o) {
         if (pcr_testy == o.pcr_testy)

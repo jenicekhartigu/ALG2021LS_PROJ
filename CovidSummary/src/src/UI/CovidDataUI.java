@@ -22,6 +22,11 @@ public class CovidDataUI {
     public static boolean konecProgramu = false;
     public static List<dataVUT> data = new ArrayList<>();
 
+    
+    /** 
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void fetchData() throws IOException, ParseException {
         data = ParseData.parseVUT(API.fetchApi().toString());
     };

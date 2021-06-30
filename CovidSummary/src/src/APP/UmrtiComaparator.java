@@ -4,6 +4,13 @@ import java.util.*;
 
 class UmrtiComparator implements Comparator<dataVUT> {
 
+    
+    /** 
+     * Metoda implemetující Comparator
+     * @param o1
+     * @param o2
+     * @return int
+     */
     @Override
     public int compare(dataVUT o1, dataVUT o2) {
         if (o1.umrti == o2.umrti)
