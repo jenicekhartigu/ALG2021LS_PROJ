@@ -1,4 +1,4 @@
-package src.UI;
+package UI;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -7,11 +7,11 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import src.APP.API;
-import src.APP.ParseData;
-import src.APP.Vykresleni;
-import src.APP.dataVUT;
-import src.UTILS.MenuStr;
+import APP.API;
+import APP.ParseData;
+import APP.Vykresleni;
+import APP.dataVUT;
+import UTILS.MenuStr;
 
 public class CovidDataUI {
     /**

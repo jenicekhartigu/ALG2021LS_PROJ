@@ -1,4 +1,4 @@
-package src.UTILS;
+package UTILS;
 
 public class MenuStr {
 
