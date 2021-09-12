@@ -4,10 +4,6 @@ Dokumentace pro semestralní projekt v předmětu ALP2S
 ### Zadaní práce
 Napište program pro stažení a zobrazení dat ohledně COVID-19. Data jsou uložená ve formě JSON na stránkách MZCR (https://onemocneni-aktualne.mzcr.cz/). Zobrazte data za použití externí knihovny, která data zobrazí v grafech. Jedno zobrazení by mělo být za celou pandemii, druhé zobrazení pro určitý časový úsek. Graf by se měl po zobrazení uložit pod specifickým názvem jako obrázek do příslušného adresáře.
 ### Návrh řešení 
-1.dasdas
-1.dasda \n sdasda
-
-
 
 1. Nafetchování dat
     1. Stažení API s daty o umrtí, testech a vyležených/nakažených
@@ -28,4 +24,10 @@ Napište program pro stažení a zobrazení dat ohledně COVID-19. Data jsou ulo
     3. Zobrazení dat o vylečených se zadaním počtu dnů
         1. Vykreslení a uložení dat za určité období 
 6. Ukončení programu
+
+### Objektový model
+
+![UML Diagram](https://github.com/jenicekhartigu/ALG2021LS_PROJ/blob/main/umldiagram.png)
+
+### 
   
