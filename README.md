@@ -6,28 +6,43 @@ Napište program pro stažení a zobrazení dat ohledně COVID-19. Data jsou ulo
 ### Návrh řešení 
 
 1. Nafetchování dat
-    1. Stažení API s daty o umrtí, testech a vyležených/nakažených
-        1. Naparsování dat do třídy dataVUT
+    * Stažení API s daty o umrtí, testech a vyležených/nakažených
+        * Naparsování dat do třídy dataVUT
 3. Zobrazení dat o umrtí
-    1. Zobrazení dat o umrtí od začatku pandemie
-        1. Vykreslení a uložení celých dat
-    2. Zobrazení dat o umrtí se zadaním počtu dnů 
-        1. Vykreslení a uložení dat za určité období 
+    * Zobrazení dat o umrtí od začatku pandemie
+        * Vykreslení a uložení celých dat
+    * Zobrazení dat o umrtí se zadaním počtu dnů 
+        * Vykreslení a uložení dat za určité období 
 4. Zobrazení dat o testech
-    1. Zobrazení dat o testech od začatku pandemie
-        1. Vykreslení a uložení celých dat 
-    2. Zobrazení dat o testech se zadaním počtu dnů
-        1. Vykreslení a uložení dat za určité období 
+    * Zobrazení dat o testech od začatku pandemie
+        * Vykreslení a uložení celých dat 
+    * Zobrazení dat o testech se zadaním počtu dnů
+        * Vykreslení a uložení dat za určité období 
 5. Zobrazení dat o vyléčených/nakažených
-    1. Zobrazení dat o vylečených a nakažených od začatku pandemie
-        1. Vykreslení a uložení celých dat 
-    3. Zobrazení dat o vylečených se zadaním počtu dnů
-        1. Vykreslení a uložení dat za určité období 
+    * Zobrazení dat o vylečených a nakažených od začatku pandemie
+        * Vykreslení a uložení celých dat 
+    * Zobrazení dat o vylečených se zadaním počtu dnů
+        * Vykreslení a uložení dat za určité období 
 6. Ukončení programu
 
 ### Objektový model
 
 ![UML Diagram](https://github.com/jenicekhartigu/ALG2021LS_PROJ/blob/main/umldiagram.png)
 
-### 
-  
+V UML diagramu jsou zobrazeny i jednotlivé proměné a jejich datové typy
+
+### Externí knihovna Xchart
+
+K zobrazení dat jsem si našel knihovnu Xchart. Je to jednoduchá knihovna pro zobrazování dat do grafů všech druhů:
+* Sloupcové grafy
+* Čárové grafy
+* Výsečové grafy 
+* Pruhové grafy
+* Plošné grafy
+* Bodové grafy
+* Kombinované grafy
+
+K zobrazování je potřeba mít data uložená v Listech doublů nebo intů (osa X,Y). 
+Nejvíce jsem zde využil spojených bodových grafů, které jsou v některých případech vykresleny přes sebe, oddělené barvami.
+
+
