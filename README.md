@@ -45,4 +45,6 @@ K zobrazení dat jsem si našel knihovnu Xchart. Je to jednoduchá knihovna pro 
 K zobrazování je potřeba mít data uložená v Listech doublů nebo intů (osa X,Y). 
 Nejvíce jsem zde využil spojených bodových grafů, které jsou v některých případech vykresleny přes sebe, oddělené barvami.
 
+Jednotlivé grafy pak mohou být ukládány jako PNG obrázek s nastavením rozlišení pro lepší externí čtení mimo program.
+
 
